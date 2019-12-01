@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-menu select="demo"></v-menu>
     <button type="primary" @click="showAlert">弹出框</button>
     <button type="primary" @click="showConfirm">确认框</button>
   </div>
