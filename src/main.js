@@ -11,7 +11,13 @@ import "../static/element/element.util.js"
 import '../static/project/css/project.scss';
 import 'element-ui/lib/theme-chalk/index.css';
 import Menu from "./components/menu.vue";
+import SearchFormInput from "./components/search_form/input.vue";
+
+import SearchFormSelect from "./components/search_form/select.vue";
 Vue.component("v-menu", Menu);
+Vue.component("v-search-input", SearchFormInput);
+Vue.component("v-search-select", SearchFormSelect);
+
 new Vue({
   el: "#app",
   router,

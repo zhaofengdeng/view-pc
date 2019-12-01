@@ -6,7 +6,7 @@ const menus = [
       {
         index: "user",
         name: "用户管理",
-        url: "/user/list"
+        url: "/system/user/list"
       },
       {
         index: "role",
@@ -18,6 +18,26 @@ const menus = [
     index: "demo",
     name: "demo查看",
     url: "/demo"
+  }
+  , {
+    index: "demo2",
+    name: "demo管理",
+    menus: [
+      {
+        index: "demoList",
+        name: "列表Demo",
+        url: "/demo/list"
+      },
+      {
+        index: "demoEdit",
+        name: "编辑demo",
+        url: "/role/list"
+      },
+      {
+        index: "demoDetail",
+        name: "详细demo",
+        url: "/role/list"
+      }]
   }
 ];
 export default {

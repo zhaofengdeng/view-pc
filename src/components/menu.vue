@@ -63,12 +63,13 @@ export default {
 }
 .menu {
   left: 0px;
+  top: 0;
   width: 200px;
   height: 100%;
   position: fixed;
   background-color: #545c64;
 }
 #app {
-  padding-left: 200px;
+  padding-left: 220px;
 }
 </style>

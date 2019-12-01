@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="demo"></v-menu>
+    <v-menu select="user"></v-menu>
     <div class="search_form">
       <div class="head">
         <v-search-input label="账号" v-model="searchModel.account"></v-search-input>
@@ -13,8 +13,6 @@
         ></v-search-select>
       </div>
     </div>
-    <button type="primary" @click="showAlert">弹出框</button>
-    <button type="primary" @click="showConfirm">确认框</button>
   </div>
 </template>
   <script>
@@ -27,8 +25,7 @@ export default {
         { id: "1", name: "测试1" },
         { id: "2", name: "测试2" },
         { id: "3", name: "测试3" }
-      ],
-      msg: "Welcome to Your Vue.js App"
+      ]
     };
   },
   methods: {
