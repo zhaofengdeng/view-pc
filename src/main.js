@@ -6,8 +6,10 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 
+import "../static/project/js/util.js";
+import "../static/element/element.util.js"
+import 'element-ui/lib/theme-chalk/index.css';
 
-/* eslint-disable no-new */
 new Vue({
   el: "#app",
   router,
