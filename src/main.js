@@ -6,10 +6,6 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 
-import Button from "vant/lib/button";
-import "vant/lib/button/style";
-import "vant/lib/dialog/style";
-Vue.component("van-button", Button);
 
 /* eslint-disable no-new */
 new Vue({
