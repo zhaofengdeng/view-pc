@@ -111,3 +111,47 @@ table{
         }
     }
 }
+.detail_table{
+    width:100%;
+    tr td{
+        height:50px;
+        border:1px solid #ddd;
+        
+    }
+    tr td:nth-child(even){
+        text-align:left;
+        padding-left:10px;
+        width:40%;
+    }
+     tr td:nth-child(odd){
+        text-align:right;
+        padding-right:10px;
+        width:10%;
+        font-weight:bold;
+        background-color:#d9edf7;
+    }
+}
+.edit_table{
+    width:100%;
+    tr td{
+        height:50px;
+        input{
+            width:300px;
+        }
+        select{
+            width:326px;
+        }
+    }
+    tr td:nth-child(even){
+        text-align:left;
+        padding-left:10px;
+        width:40%;
+    }
+     tr td:nth-child(odd){
+        text-align:right;
+        padding-right:10px;
+        width:10%;
+        font-weight:bold;
+        background-color:#d9edf7;
+    }
+}

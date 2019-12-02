@@ -3,6 +3,9 @@ import Router from "vue-router";
 import demo from "@/page/demo";
 
 import demo_list from "@/page/demo/list";
+import demo_detail from "@/page/demo/detail";
+import demo_edit from "@/page/demo/edit";
+
 import system_user_list from "@/page/system/user/list";
 
 import system_user_detail from "@/page/system/user/detail";
@@ -21,6 +24,16 @@ export default new Router({
       path: "/demo/list",
       name: "demo_list",
       component: demo_list
+    },
+    {
+      path: "/demo/edit",
+      name: "demo_edit",
+      component: demo_edit
+    },
+    {
+      path: "/demo/detail",
+      name: "demo_detail",
+      component: demo_detail
     },
     {
       path: "/",

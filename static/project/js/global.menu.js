@@ -31,12 +31,12 @@ const menus = [
       {
         index: "demoEdit",
         name: "编辑demo",
-        url: "/role/list"
+        url: "/demo/edit"
       },
       {
         index: "demoDetail",
         name: "详细demo",
-        url: "/role/list"
+        url: "/demo/detail"
       }]
   }
 ];
