@@ -70,3 +70,44 @@ input,select{
         }
     }
 }
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.data_table{
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    thead{
+        tr{
+            background-color:$primary !important;
+            th{
+                text-align:center;
+                border: 1px solid #ddd;
+                border-bottom-width: 2px;
+                padding: 8px;
+                line-height: 1.42857143;
+            }
+        }
+    }
+    tr{
+        td{
+            border: 1px solid #ddd;
+            padding: 8px;
+            line-height: 1.42857143;
+        }
+    }
+    tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+      }
+    tfoot{
+        tr{
+            th{
+                background-color:#f2dede;
+	            text-align:center;
+            }
+        }
+    }
+}

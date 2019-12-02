@@ -14,9 +14,13 @@ import Menu from "./components/menu.vue";
 import SearchFormInput from "./components/search_form/input.vue";
 
 import SearchFormSelect from "./components/search_form/select.vue";
+
+import SearchFormPagination from "./components/search_form/pagination.vue";
 Vue.component("v-menu", Menu);
 Vue.component("v-search-input", SearchFormInput);
 Vue.component("v-search-select", SearchFormSelect);
+
+Vue.component("v-pagination", SearchFormPagination);
 
 new Vue({
   el: "#app",
