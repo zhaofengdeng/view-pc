@@ -4,42 +4,48 @@
     <div class="search_form">
       <div class="head">
         <v-search-input label="账号" v-model="searchModel.account"></v-search-input>
-        <v-search-select
-          label="下拉列表"
-          optionKey="id"
-          optionLabel="name"
-          v-model="searchModel.name"
-          :objects="selects"
-        ></v-search-select>
+        <v-search-input label="姓名" v-model="searchModel.name"></v-search-input>
+        <button @click="search" type="button">查询</button>
       </div>
     </div>
+    <table class="data_table">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>账号</th>
+          <th>名称</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(model,index) in list">
+          <td>{{$refs.pagination.toDataNo(index)}}</td>
+          <td>{{model.account}}</td>
+          <td>{{model.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <v-pagination ref="pagination" v-model="paginate" @search="search"></v-pagination>
   </div>
 </template>
   <script>
 export default {
-  name: "HelloWorld",
   data() {
     return {
+      list: [],
       searchModel: {},
-      selects: [
-        { id: "1", name: "测试1" },
-        { id: "2", name: "测试2" },
-        { id: "3", name: "测试3" }
-      ]
+      paginate: {}
     };
   },
   methods: {
-    showAlert() {
-      this.alert("alert 就是这么使用的").then(res => {
-        console.log(res);
-        console.log("=============ds");
-      });
-    },
-    showConfirm() {
-      this.confirm("确认是否删除").then(res => {
-        console.log(res);
+    search(paginate) {
+      this.searchModel.paginate = paginate;
+      console.log(this.searchModel);
+      this.post("/user/search", this.searchModel).then(res => {
+        this.list = res.models;
+        this.paginate = res.paginate;
       });
     }
-  }
+  },
+  mounted() {}
 };
 </script>

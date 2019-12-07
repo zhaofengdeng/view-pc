@@ -8,6 +8,8 @@ import demo_edit from "@/page/demo/edit";
 
 import system_user_list from "@/page/system/user/list";
 
+import login from "@/page/login";
+
 import system_user_detail from "@/page/system/user/detail";
 
 import system_user_edit from "@/page/system/user/edit";
@@ -19,6 +21,11 @@ export default new Router({
       path: "/demo",
       name: "demo",
       component: demo
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: login
     },
     {
       path: "/demo/list",

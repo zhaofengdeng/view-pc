@@ -39,13 +39,18 @@ const post = function (url, data) {
         Axios.post(globalProject.serverUrl + url, data).then(
             response => {
                 if (!response.data.success) {
+                    if (response.data.code == -100) {
+                        this.$router.push({
+                            path: "/login"
+                        });
+                    }
                     var msg = "1002服务器返回异常，请联系管理员";
                     if (!StringUtil.isNull(response.data.data)) {
                         msg = response.data.data;
                     }
                     this.alert(msg);
                 } else {
-                    resolve(response.data);
+                    resolve(response.data.data);
                 }
             },
             err => {

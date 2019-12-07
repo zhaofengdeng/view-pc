@@ -5,9 +5,9 @@
       @current-change="handleCurrentChange"
       :current-page="value.curPage"
       :page-sizes="[15,100, 200, 300, 400]"
-      :page-size="value.pageSize"
+      :page-size="value.maxPerPage"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="value.total"
+      :total="value.dataCount"
     ></el-pagination>
   </div>
 </template>
@@ -17,7 +17,7 @@ import Pagination from "element-ui";
 import Vue from "vue";
 Vue.use(Pagination);
 export default {
-  props: ["value"],
+  props: ["value", "load"],
   components: {},
   created() {
     if (this.value == undefined) {
@@ -27,20 +27,23 @@ export default {
     if (this.value.curPage == undefined) {
       this.value.curPage = 1;
     }
-    if (this.value.pageSize == undefined) {
-      this.value.pageSize = 15;
+    if (this.value.maxPerPage == undefined) {
+      this.value.maxPerPage = 15;
     }
-    if (this.value.total == undefined) {
-      this.value.total = 0;
+    if (this.value.dataCount == undefined) {
+      this.value.dataCount = 0;
+    }
+    if (this.load != "lazy") {
+      this.parentSearch();
     }
   },
   mounted() {},
   methods: {
     toDataNo(index) {
-      return (this.value.curPage - 1) * this.value.pageSize + index + 1;
+      return (this.value.curPage - 1) * this.value.maxPerPage + index + 1;
     },
     handleSizeChange(val) {
-      this.value.pageSize = val;
+      this.value.maxPerPage = val;
       this.parentSearch();
     },
     handleCurrentChange(val) {
@@ -50,12 +53,12 @@ export default {
     parentSearch() {
       this.$emit("input", {
         curPage: this.value.curPage,
-        total: this.value.total,
-        pageSize: this.value.pageSize
+        dataCount: this.value.dataCount,
+        maxPerPage: this.value.maxPerPage
       });
       this.$emit("search", {
-        paginationCurPage: this.value.curPage,
-        paginationPageSize: this.value.pageSize
+        curPage: this.value.curPage,
+        maxPerPage: this.value.maxPerPage
       });
     }
   },

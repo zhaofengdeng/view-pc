@@ -1,4 +1,4 @@
-const serverUrl = "/alcon-monitor";
+const serverUrl = "/pc-server";
 export default {
   serverUrl
 };
