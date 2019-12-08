@@ -1,4 +1,5 @@
 $primary:#d9edf7;
+$primary2:#337ab7;
 html,body{
     margin:0;
     padding:0;
@@ -38,6 +39,8 @@ input,select{
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+
 .search_form{
     .head{
         margin-top:10px;
