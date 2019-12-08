@@ -1,34 +1,34 @@
 <template>
-    <div>
-        <v-menu select="user"></v-menu>
-        <table class="edit_table">
-            <tr>
-                <td>账号</td>
-                <td>
-                    <input type="text" v-model="model.account">
-                </td>
-                <td>姓名</td>
-                <td>
-                    <input type="text" v-model="model.name">
-                </td>
-            </tr>
-            <tr>
-                <td>邮箱</td>
-                <td>
-                    <input type="text" v-model="model.email">
-                </td>
-                <td>状态</td>
-                <td>
-                    <el-radio-group v-model="model.enable">
-                        <el-radio :label="true">启用</el-radio>
-                        <el-radio :label="false">停用</el-radio>
-                    </el-radio-group>
-                </td>
-            </tr>
-        </table>
-        <button type="button" @click="updateButtonClick">更新</button>
-        <button type="button" @click="$router.go(-1);" class="default">返回</button>
-    </div>
+  <div>
+    <v-menu select="user"></v-menu>
+    <table class="edit_table">
+      <tr>
+        <td>账号</td>
+        <td>
+          <input type="text" v-model="model.account">
+        </td>
+        <td>姓名</td>
+        <td>
+          <input type="text" v-model="model.name">
+        </td>
+      </tr>
+      <tr>
+        <td>邮箱</td>
+        <td>
+          <input type="text" v-model="model.email">
+        </td>
+        <td>状态</td>
+        <td>
+          <el-radio-group v-model="model.enable">
+            <el-radio :label="true">启用</el-radio>
+            <el-radio :label="false">停用</el-radio>
+          </el-radio-group>
+        </td>
+      </tr>
+    </table>
+    <button type="button" @click="updateButtonClick">更新</button>
+    <button type="button" @click="$router.go(-1);" class="default">返回</button>
+  </div>
 </template>
   <script>
 export default {
@@ -36,11 +36,32 @@ export default {
     return {
       model: {
         enable: true
-      }
+      },
+      checkModel: [
+        {
+          key: "name",
+          name: "姓名",
+          value: "required"
+        },
+        {
+          key: "account",
+          name: "账号",
+          value: "required"
+        },
+        {
+          key: "email",
+          name: "邮箱",
+          value: "required,email"
+        }
+      ]
     };
   },
   methods: {
     updateButtonClick() {
+      var flag = this.check(this.model, this.checkModel);
+      if (!flag) {
+        return;
+      }
       this.post("/user/save_or_update", this.model).then(res => {
         this.$router.push({
           path: "/system/user/list"

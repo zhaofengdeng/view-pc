@@ -67,7 +67,7 @@ Vue.filter('format', function (val, type) {
 
     var typeArray = type.split('.');
     var typeData = globalProject.formatData;
-    //如果split . 大于1说明需要取他胡自己
+    //如果split . 大于1说明需要取自己的属性
     for (var i = 0; i < typeArray.length; i++) {
         typeData = typeData[typeArray[i]];
     }
@@ -80,4 +80,54 @@ Vue.filter('format', function (val, type) {
     return val;
 });
 //==============================自定义数据格式=================================
+
+//==============================校验功能=================================
+
+const check = function (model, checkList) {
+    var checkFlag = true;
+    this.closeAllErrorMsg();
+    for (var i = 0; i < checkList.length; i++) {
+        var checkModel = checkList[i];
+        var key = checkModel.key;
+        var checkModelName = checkModel.name;
+        var modelValue = model[key];
+        var valueArray = checkModel.value.split(",");
+        for (var j = 0; j < valueArray.length; j++) {
+            var checkValue = valueArray[j];
+
+            if ("required" == checkValue) {
+                if (StringUtil.isNull(modelValue)) {
+
+                    this.showErrorMsg(checkModelName + "为必填项");
+                    checkFlag = false;
+
+                    break;
+                }
+            }
+
+            if ("email" == checkValue) {
+                var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+                if (!reg.test(modelValue)) {
+                    this.showErrorMsg(checkModelName + "不是正确的邮箱格式");
+                    checkFlag = false;
+                    break;
+                }
+            }
+
+        }
+    }
+    return checkFlag;
+
+}
+Vue.prototype.check = check;
+//==============================校验功能=================================
+
+const wait = function (ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+        end = new Date().getTime();
+    }
+}
+Vue.prototype.wait = wait;
 export default {};
