@@ -100,6 +100,18 @@ table{
             border: 1px solid #ddd;
             padding: 8px;
             line-height: 1.42857143;
+            &.no{
+                text-align: center;
+                width:50px;
+            }
+            &.status{
+                text-align: center;
+                width:100px;
+            }
+            &.button{
+                text-align:center;
+
+            }
         }
     }
     tr:nth-of-type(odd) {

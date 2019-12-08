@@ -31,7 +31,7 @@ const SessionUtil = {
 };
 Vue.prototype.SessionUtil = SessionUtil;
 //==============================SessionUtil=================================
-
+//==============================post封装=================================
 Axios.defaults.withCredentials = true;
 Axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 const post = function (url, data) {
@@ -60,4 +60,24 @@ const post = function (url, data) {
     });
 };
 Vue.prototype.post = post;
+//==============================post封装=================================
+
+//==============================自定义数据格式=================================
+Vue.filter('format', function (val, type) {
+
+    var typeArray = type.split('.');
+    var typeData = globalProject.formatData;
+    //如果split . 大于1说明需要取他胡自己
+    for (var i = 0; i < typeArray.length; i++) {
+        typeData = typeData[typeArray[i]];
+    }
+
+    for (var i = 0; i < typeData.length; i++) {
+        if (typeData[i].value === val) {
+            return typeData[i].name;
+        }
+    }
+    return val;
+});
+//==============================自定义数据格式=================================
 export default {};

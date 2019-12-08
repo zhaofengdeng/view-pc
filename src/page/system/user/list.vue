@@ -18,16 +18,18 @@
           <th>账号</th>
           <th>名称</th>
           <th>邮箱</th>
+          <th>状态</th>
           <th>编辑</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(model,index) in list">
-          <td>{{$refs.pagination.toDataNo(index)}}</td>
+          <td class="no">{{$refs.pagination.toDataNo(index)}}</td>
           <td>{{model.account}}</td>
           <td>{{model.name}}</td>
           <td>{{model.email}}</td>
-          <td>
+          <td class="status">{{model.enable | format('user.enable')}}</td>
+          <td class="button">
             <button @click="editButtonClick(model)">编辑</button>
             <button @click="detailButtonClick(model)">详细</button>
           </td>

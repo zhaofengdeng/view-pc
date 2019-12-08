@@ -11,8 +11,8 @@
             <tr>
                 <td>邮箱</td>
                 <td>{{model.email}}</td>
-                <td>账号</td>
-                <td>{{model.enable}}</td>
+                <td>状态</td>
+                <td>{{model.enable | format('user.enable')}}</td>
             </tr>
         </table>
         <button type="button" @click="$router.go(-1);" class="default">返回</button>
