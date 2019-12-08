@@ -17,6 +17,8 @@
           <th>序号</th>
           <th>账号</th>
           <th>名称</th>
+          <th>邮箱</th>
+          <th>编辑</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +26,11 @@
           <td>{{$refs.pagination.toDataNo(index)}}</td>
           <td>{{model.account}}</td>
           <td>{{model.name}}</td>
+          <td>{{model.email}}</td>
+          <td>
+            <button @click="editButtonClick(model)">编辑</button>
+            <button @click="detailButtonClick(model)">详细</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -50,6 +57,18 @@ export default {
     blankButtonClick() {
       this.$router.push({
         path: "/system/user/edit"
+      });
+    },
+    editButtonClick(model) {
+      this.$router.push({
+        path: "/system/user/edit",
+        query: { id: model.id }
+      });
+    },
+    detailButtonClick(model) {
+      this.$router.push({
+        path: "/system/user/detail",
+        query: { id: model.id }
       });
     }
   },

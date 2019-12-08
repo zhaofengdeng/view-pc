@@ -27,6 +27,7 @@
             </tr>
         </table>
         <button type="button" @click="updateButtonClick">更新</button>
+        <button type="button" @click="$router.go(-1);" class="default">返回</button>
     </div>
 </template>
   <script>
@@ -47,6 +48,13 @@ export default {
       });
     }
   },
-  created() {}
+  mounted() {
+    var id = this.$route.query.id;
+    if (!this.StringUtil.isNull(id)) {
+      this.post("/user/search_by_id", { id: id }).then(res => {
+        this.model = res;
+      });
+    }
+  }
 };
 </script>
