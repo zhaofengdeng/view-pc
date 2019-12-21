@@ -14,9 +14,9 @@ const menus = [
         url: "/system/role/list"
       },
       {
-        index: "permissionController",
+        index: "permission",
         name: "权限URL管理",
-        url: "/system/permission_controller/list"
+        url: "/system/permission/list"
       }
     ]
   }, {

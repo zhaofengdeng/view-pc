@@ -25,9 +25,47 @@ const getChildens = function (list, nodeId) {
     // }
     return childenList;
 }
+const getPermissions = function (list, nodeId) {
+
+    var childenList = list.filter(function (e) {
+        return Object.keys(e).some(function (key) {
+
+            if (e.node != null && e.node.id == nodeId) {
+                return true;
+            }
+            return false;
+        })
+    })
+    return childenList;
+}
 const getTreeNodes = function (list) {
     var paretenNode = getNodeByName(list, "权限URL");
     return getTreeChildens(list, paretenNode.id);
+}
+
+const treeNodeInitPermissions = function (treeNodes, permissions) {
+    var list = [];
+    for (var i = 0; i < treeNodes.length; i++) {
+        var model = {
+            id: "parent-" + treeNodes[i].id,
+            name: treeNodes[i].name,
+            isTreeNode: true,
+
+            children: []
+        };
+        if (treeNodes[i].children != null && treeNodes[i].children.length > 0) {
+            model.children = treeNodeInitPermissions(treeNodes[i].children, permissions);
+        }
+        var filterPermissions = getPermissions(permissions, treeNodes[i].id);
+        for (var j = 0; j < filterPermissions.length; j++) {
+            model.children.push(filterPermissions[j]);
+        }
+        if (model.children.length > 0) {
+            list.push(model);
+        }
+
+    }
+    return list;
 }
 const getTreeChildens = function (list, nodeId) {
     var childens = getChildens(list, nodeId);
@@ -40,6 +78,7 @@ const getTreeChildens = function (list, nodeId) {
     return childens;
 }
 Vue.prototype.getTreeNodes = getTreeNodes;
+Vue.prototype.treeNodeInitPermissions = treeNodeInitPermissions;
 export default {
 
 };

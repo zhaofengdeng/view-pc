@@ -81,6 +81,9 @@ Vue.filter('format', function (val, type) {
 });
 Vue.filter('listFormat', function (list, type) {
     var str = "";
+    if (StringUtil.isNull(list)) {
+        return str;
+    }
     for (var i = 0; i < list.length; i++) {
 
         str = str + list[i][type];

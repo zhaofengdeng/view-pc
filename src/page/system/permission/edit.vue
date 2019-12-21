@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="user"></v-menu>
+    <v-menu select="permission"></v-menu>
     <table class="edit_table">
       <tr>
         <td>名称</td>
@@ -17,12 +17,12 @@
         <td>
           <input type="text" v-model="model.sort">
         </td>
+      </tr>
+      <tr>
         <td>所属树节点</td>
         <td>
           <template v-if="model.node!=null">{{model.node.name}}</template>
         </td>
-      </tr>
-      <tr>
         <td>选择所属树节点</td>
         <td colspan="3">
           <el-tree
@@ -81,13 +81,11 @@ export default {
       if (!flag) {
         return;
       }
-      this.post("/permission_controller/save_or_update", this.model).then(
-        res => {
-          this.$router.push({
-            path: "/system/permission_controller/list"
-          });
-        }
-      );
+      this.post("/permission/save_or_update", this.model).then(res => {
+        this.$router.push({
+          path: "/system/permission/list"
+        });
+      });
     },
     handleNodeClick(data) {
       this.model.node = data;
@@ -97,8 +95,11 @@ export default {
   mounted() {
     var id = this.$route.query.id;
     if (!this.StringUtil.isNull(id)) {
-      this.post("/permission_controller/search_by_id", { id: id }).then(res => {
+      this.post("/permission/search_by_id", { id: id }).then(res => {
         this.model = res;
+        for (var i = 0; i < res.roles.length; i++) {
+          this.selectRoles.push(res.roles[i].id);
+        }
       });
     }
     this.post("/tree_node/search_all", {}).then(res => {

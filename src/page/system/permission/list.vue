@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="permissionController"></v-menu>
+    <v-menu select="permission"></v-menu>
     <div class="search_form">
       <div class="head">
         <v-search-input label="url" v-model="searchModel.url"></v-search-input>
@@ -53,25 +53,25 @@ export default {
   methods: {
     search(paginate) {
       this.searchModel.paginate = paginate;
-      this.post("/permission_controller/search", this.searchModel).then(res => {
+      this.post("/permission/search", this.searchModel).then(res => {
         this.list = res.models;
         this.paginate = res.paginate;
       });
     },
     blankButtonClick() {
       this.$router.push({
-        path: "/system/permission_controller/edit"
+        path: "/system/permission/edit"
       });
     },
     editButtonClick(model) {
       this.$router.push({
-        path: "/system/permission_controller/edit",
+        path: "/system/permission/edit",
         query: { id: model.id }
       });
     },
     detailButtonClick(model) {
       this.$router.push({
-        path: "/system/permission_controller/detail",
+        path: "/system/permission/detail",
         query: { id: model.id }
       });
     }

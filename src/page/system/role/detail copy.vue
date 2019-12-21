@@ -1,22 +1,22 @@
 <template>
   <div>
-    <v-menu select="role"></v-menu>
+    <v-menu select="user"></v-menu>
     <table class="detail_table">
       <tr>
-        <td>名称</td>
+        <td>用户名</td>
         <td>{{model.name}}</td>
-        <td>英文名称</td>
-        <td>{{model.engName}}</td>
+        <td>账号</td>
+        <td>{{model.account}}</td>
       </tr>
       <tr>
-        <td>权限</td>
-        <td colspan="3">{{model.permissions | listFormat('name') }}</td>
+        <td>邮箱</td>
+        <td>{{model.email}}</td>
+        <td>状态</td>
+        <td>{{model.enable | format('user.enable')}}</td>
       </tr>
       <tr>
-        <td>创建时间</td>
-        <td>{{model.insertedAt}}</td>
-        <td>更新时间</td>
-        <td>{{model.updatedAt}}</td>
+        <td>角色</td>
+        <td colspan="3">{{model.roles | listFormat('name') }}</td>
       </tr>
     </table>
     <button type="button" @click="$router.go(-1);" class="default">返回</button>
@@ -33,7 +33,7 @@ export default {
   mounted() {
     var id = this.$route.query.id;
     if (!this.StringUtil.isNull(id)) {
-      this.post("/role/search_by_id", { id: id }).then(res => {
+      this.post("/user/search_by_id", { id: id }).then(res => {
         this.model = res;
       });
     }

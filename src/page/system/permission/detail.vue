@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="permissionController"></v-menu>
+    <v-menu select="permission"></v-menu>
     <table class="detail_table">
       <tr>
         <td>名称</td>
@@ -37,7 +37,7 @@ export default {
   mounted() {
     var id = this.$route.query.id;
     if (!this.StringUtil.isNull(id)) {
-      this.post("/permission_controller/search_by_id", { id: id }).then(res => {
+      this.post("/permission/search_by_id", { id: id }).then(res => {
         this.model = res;
       });
     }
