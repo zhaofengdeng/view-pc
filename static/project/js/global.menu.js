@@ -11,7 +11,7 @@ const menus = [
       {
         index: "role",
         name: "角色管理",
-        url: "/role/list"
+        url: "/system/role/list"
       }
     ]
   }, {
