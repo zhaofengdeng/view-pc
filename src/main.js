@@ -7,6 +7,8 @@ import router from "./router";
 Vue.config.productionTip = false;
 
 import "../static/project/js/util.js";
+
+import "../static/project/js/project.js";
 import "../static/element/element.util.js"
 import '../static/project/css/project.scss';
 import '../static/project/css/button.scss';
@@ -19,9 +21,10 @@ import SearchFormPagination from "./components/search_form/pagination.vue";
 Vue.component("v-menu", Menu);
 Vue.component("v-search-input", SearchFormInput);
 Vue.component("v-search-select", SearchFormSelect);
-import { Radio, Checkbox } from "element-ui";
+import { Radio, Checkbox, Tree } from "element-ui";
 Vue.use(Radio);
 Vue.use(Checkbox);
+Vue.use(Tree);
 Vue.component("v-pagination", SearchFormPagination);
 
 new Vue({

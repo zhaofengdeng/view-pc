@@ -12,6 +12,11 @@ const menus = [
         index: "role",
         name: "角色管理",
         url: "/system/role/list"
+      },
+      {
+        index: "permissionController",
+        name: "权限URL管理",
+        url: "/system/permission_controller/list"
       }
     ]
   }, {

@@ -15,7 +15,6 @@ export default {
       handler: function(val, oldVal) {
         this.closeAllErrorMsg();
         var curPath = val.path;
-        console.log(val);
         var lastPath = oldVal.path;
         var model = {
           path: curPath,
