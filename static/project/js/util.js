@@ -43,10 +43,14 @@ const post = function (url, data) {
                         this.$router.push({
                             path: "/login"
                         });
+                        return;
                     }
                     var msg = "1002服务器返回异常，请联系管理员";
                     if (!StringUtil.isNull(response.data.data)) {
                         msg = response.data.data;
+                    }
+                    if (response.data.code == -101) {
+                        msg = url + "没有权限访问";
                     }
                     this.alert(msg);
                 } else {
