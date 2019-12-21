@@ -25,6 +25,14 @@
           </el-radio-group>
         </td>
       </tr>
+      <tr>
+        <td>角色</td>
+        <td>
+          <el-checkbox-group v-model="selectRoles">
+            <el-checkbox v-for="role in roles" :label="role.id" :key="role.id">{{role.name}}</el-checkbox>
+          </el-checkbox-group>
+        </td>
+      </tr>
     </table>
     <button type="button" @click="updateButtonClick">更新</button>
     <button type="button" @click="$router.go(-1);" class="default">返回</button>
@@ -37,27 +45,39 @@ export default {
       model: {
         enable: true
       },
+
+      selectRoles: [],
+      roles: [],
       checkModel: [
         {
           key: "name",
           name: "姓名",
-          value: "required"
+          value: "required",
+          maxLength: 100
         },
         {
           key: "account",
           name: "账号",
-          value: "required"
+          value: "required",
+          maxLength: 100
         },
         {
           key: "email",
           name: "邮箱",
-          value: "required,email"
+          value: "required,email",
+          maxLength: 100
+        },
+        {
+          key: "roleIds",
+          name: "角色",
+          minLength: 1
         }
       ]
     };
   },
   methods: {
     updateButtonClick() {
+      this.model.roleIds = this.selectRoles;
       var flag = this.check(this.model, this.checkModel);
       if (!flag) {
         return;
@@ -67,13 +87,22 @@ export default {
           path: "/system/user/list"
         });
       });
+    },
+    loadRoles() {
+      this.post("/role/search_all", this.model).then(res => {
+        this.roles = res;
+      });
     }
   },
   mounted() {
+    this.loadRoles();
     var id = this.$route.query.id;
     if (!this.StringUtil.isNull(id)) {
       this.post("/user/search_by_id", { id: id }).then(res => {
         this.model = res;
+        for (var i = 0; i < res.roles.length; i++) {
+          this.selectRoles.push(res.roles[i].id);
+        }
       });
     }
   }

@@ -79,6 +79,18 @@ Vue.filter('format', function (val, type) {
     }
     return val;
 });
+Vue.filter('listFormat', function (list, type) {
+    var str = "";
+    for (var i = 0; i < list.length; i++) {
+
+        str = str + list[i][type];
+        if (i < list.length - 1) {
+            str = str + "、";
+        }
+    }
+
+    return str;
+});
 //==============================自定义数据格式=================================
 
 //==============================校验功能=================================
@@ -91,7 +103,32 @@ const check = function (model, checkList) {
         var key = checkModel.key;
         var checkModelName = checkModel.name;
         var modelValue = model[key];
-        var valueArray = checkModel.value.split(",");
+        var valueArray = [];
+        if (!StringUtil.isNull(checkModel.value)) {
+            valueArray = checkModel.value.split(",");
+        }
+
+        //最大长度校验
+        if (!StringUtil.isNull(checkModel.maxLength) && !StringUtil.isNull(modelValue)) {
+            if (modelValue.length > checkModel.maxLength) {
+                if (modelValue instanceof Array) {
+                    this.showErrorMsg(checkModelName + "选择不能超过" + checkModel.maxLength + "个");
+                } else {
+                    this.showErrorMsg(checkModelName + "不能超过" + checkModel.maxLength + "个字符");
+                }
+
+                checkFlag = false;
+                continue;
+            }
+        }
+        //最小长度校验
+        if (!StringUtil.isNull(checkModel.minLength)) {
+            if (modelValue.length < checkModel.minLength) {
+                this.showErrorMsg(checkModelName + "最少选择" + checkModel.minLength + "个");
+                checkFlag = false;
+                continue;
+            }
+        }
         for (var j = 0; j < valueArray.length; j++) {
             var checkValue = valueArray[j];
 
@@ -104,7 +141,6 @@ const check = function (model, checkList) {
                     break;
                 }
             }
-
             if ("email" == checkValue) {
                 var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
                 if (!reg.test(modelValue)) {
@@ -115,6 +151,8 @@ const check = function (model, checkList) {
             }
 
         }
+
+
     }
     return checkFlag;
 

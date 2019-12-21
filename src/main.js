@@ -19,8 +19,9 @@ import SearchFormPagination from "./components/search_form/pagination.vue";
 Vue.component("v-menu", Menu);
 Vue.component("v-search-input", SearchFormInput);
 Vue.component("v-search-select", SearchFormSelect);
-import Radio from "element-ui";
+import { Radio, Checkbox } from "element-ui";
 Vue.use(Radio);
+Vue.use(Checkbox);
 Vue.component("v-pagination", SearchFormPagination);
 
 new Vue({

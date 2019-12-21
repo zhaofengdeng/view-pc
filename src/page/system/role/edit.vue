@@ -24,6 +24,7 @@ export default {
       model: {
         enable: true
       },
+
       checkModel: [
         {
           key: "name",
