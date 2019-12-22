@@ -38,6 +38,16 @@ button{
     }
 
 }
+.a{
+    color:$primary_button_color;
+    background-color:transparent;
+    border:0px;
+
+    &:hover{
+        background-color: darken($primary_button_font_color,10%);
+    }
+
+}
 button .big{
     
 }

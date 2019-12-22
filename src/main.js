@@ -14,11 +14,13 @@ import '../static/project/css/project.scss';
 import '../static/project/css/button.scss';
 import 'element-ui/lib/theme-chalk/index.css';
 import Menu from "./components/menu.vue";
+import Head from "./components/head.vue";
 import SearchFormInput from "./components/search_form/input.vue";
 import SearchFormSelect from "./components/search_form/select.vue";
 
 import SearchFormPagination from "./components/search_form/pagination.vue";
 Vue.component("v-menu", Menu);
+Vue.component("v-head", Head);
 Vue.component("v-search-input", SearchFormInput);
 Vue.component("v-search-select", SearchFormSelect);
 import { Radio, Checkbox, Tree } from "element-ui";

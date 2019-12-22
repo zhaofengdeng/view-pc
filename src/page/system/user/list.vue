@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-menu select="user"></v-menu>
+    <v-head></v-head>
     <div class="search_form">
       <div class="head">
         <v-search-input label="账号" v-model="searchModel.account"></v-search-input>

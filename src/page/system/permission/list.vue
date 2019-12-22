@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-menu select="permission"></v-menu>
+    <v-head></v-head>
     <div class="search_form">
       <div class="head">
         <v-search-input label="url" v-model="searchModel.url"></v-search-input>

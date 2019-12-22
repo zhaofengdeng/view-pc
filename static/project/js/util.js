@@ -115,6 +115,33 @@ const check = function (model, checkList) {
             valueArray = checkModel.value.split(",");
         }
 
+        var curErrorFlag = false;
+        for (var j = 0; j < valueArray.length; j++) {
+            var checkValue = valueArray[j];
+
+            if ("required" == checkValue) {
+                if (StringUtil.isNull(modelValue)) {
+
+                    this.showErrorMsg(checkModelName + "为必填项");
+                    checkFlag = false;
+                    curErrorFlag = true;
+                    break;
+                }
+            }
+            if ("email" == checkValue) {
+                var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+                if (!reg.test(modelValue)) {
+                    this.showErrorMsg(checkModelName + "不是正确的邮箱格式");
+                    checkFlag = false;
+                    curErrorFlag = true;
+                    break;
+                }
+            }
+
+        }
+        if (curErrorFlag) {
+            continue;
+        }
         //最大长度校验
         if (!StringUtil.isNull(checkModel.maxLength) && !StringUtil.isNull(modelValue)) {
             if (modelValue.length > checkModel.maxLength) {
@@ -130,36 +157,12 @@ const check = function (model, checkList) {
         }
         //最小长度校验
         if (!StringUtil.isNull(checkModel.minLength)) {
-            if (modelValue.length < checkModel.minLength) {
+            if (StringUtil.isNull(modelValue) || modelValue.length < checkModel.minLength) {
                 this.showErrorMsg(checkModelName + "最少选择" + checkModel.minLength + "个");
                 checkFlag = false;
                 continue;
             }
         }
-        for (var j = 0; j < valueArray.length; j++) {
-            var checkValue = valueArray[j];
-
-            if ("required" == checkValue) {
-                if (StringUtil.isNull(modelValue)) {
-
-                    this.showErrorMsg(checkModelName + "为必填项");
-                    checkFlag = false;
-
-                    break;
-                }
-            }
-            if ("email" == checkValue) {
-                var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-                if (!reg.test(modelValue)) {
-                    this.showErrorMsg(checkModelName + "不是正确的邮箱格式");
-                    checkFlag = false;
-                    break;
-                }
-            }
-
-        }
-
-
     }
     return checkFlag;
 

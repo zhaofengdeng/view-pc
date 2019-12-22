@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-menu select="permission"></v-menu>
+    <v-head></v-head>
     <table class="edit_table">
       <tr>
         <td>名称</td>

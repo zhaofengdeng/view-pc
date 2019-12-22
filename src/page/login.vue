@@ -28,6 +28,7 @@ export default {
   methods: {
     loninButtonClick() {
       this.post("/user_login/login", this.model).then(res => {
+        this.SessionUtil.set("session_user", res);
         this.$router.push({
           path: "/system/user/list"
         });

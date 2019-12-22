@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-menu select="user"></v-menu>
+    <v-head></v-head>
     <table class="detail_table">
       <tr>
         <td>用户名</td>
