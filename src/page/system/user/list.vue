@@ -33,6 +33,7 @@
           <td class="button">
             <button @click="editButtonClick(model)">编辑</button>
             <button @click="detailButtonClick(model)">详细</button>
+            <button @click="resetButtonClick(model)">重置密码</button>
           </td>
         </tr>
       </tbody>
@@ -72,6 +73,15 @@ export default {
       this.$router.push({
         path: "/system/user/detail",
         query: { id: model.id }
+      });
+    },
+    resetButtonClick(model) {
+      this.confirm("用户" + model.name + "是否重置密码?").then(res => {
+        if (res.confirm) {
+          this.post("/user/reset_passwd", { id: model.id }).then(res => {
+            this.alert(res);
+          });
+        }
       });
     }
   },
