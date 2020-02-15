@@ -9,42 +9,29 @@ const menus = [
         url: "/system/user/list"
       },
       {
-        index: "role",
-        name: "角色管理",
-        url: "/system/role/list"
+        index: "student",
+        name: "学生管理",
+        url: "/system/student/list"
       },
       {
-        index: "permission",
-        name: "权限URL管理",
-        url: "/system/permission/list"
+        index: "vacation",
+        name: "请假管理",
+        url: "/system/vacation/list"
+      },
+      {
+        index: "notice",
+        name: "公告管理",
+        url: "/system/notice/list"
+      },
+      {
+        index: "room",
+        name: "寝室管理",
+        url: "/system/room/list"
       }
     ]
-  }, {
-    index: "demo",
-    name: "demo查看",
-    url: "/demo"
-  }
-  , {
-    index: "demo2",
-    name: "demo管理",
-    menus: [
-      {
-        index: "demoList",
-        name: "列表Demo",
-        url: "/demo/list"
-      },
-      {
-        index: "demoEdit",
-        name: "编辑demo",
-        url: "/demo/edit"
-      },
-      {
-        index: "demoDetail",
-        name: "详细demo",
-        url: "/demo/detail"
-      }]
   }
 ];
+
 export default {
   menus
 };
