@@ -29,9 +29,15 @@ export default {
     loninButtonClick() {
       this.post("/user_login/login", this.model).then(res => {
         this.SessionUtil.set("session_user", res);
-        this.$router.push({
-          path: "/system/user/list"
-        });
+        if (res.type == "管理员") {
+          this.$router.push({
+            path: "/system/user/list"
+          });
+        } else {
+          this.$router.push({
+            path: "/student/home"
+          });
+        }
       });
     }
   }
