@@ -129,7 +129,12 @@ table{
         }
     }
 }
+.detail_table_page{
+    position: absolute;top: 40%;transform: translateY(-50%);
+    width:100%;
+}
 .detail_table{
+   
     width:100%;
     tr td{
         height:50px;
@@ -149,7 +154,12 @@ table{
         background-color:#d9edf7;
     }
 }
+.edit_table_page{
+    width:100%;
+    position: absolute;top: 40%;transform: translateY(-50%);
+}
 .edit_table{
+
     width:100%;
     tr td{
         height:50px;
@@ -172,4 +182,14 @@ table{
         font-weight:bold;
         background-color:#d9edf7;
     }
+}
+.edit_button_group{
+    width:100%;
+    text-align: center;
+  margin-top:100px;
+}
+.detail_button_group{
+    width:100%;
+    text-align: center;
+  margin-top:100px;
 }

@@ -1,7 +1,7 @@
 const menus = [
   {
     index: "content",
-    name: "系统管理",
+    name: "北5宿舍管理",
     menus: [
       {
         index: "user",

@@ -2,22 +2,26 @@
   <div>
     <v-menu select="vacation"></v-menu>
     <v-head></v-head>
-    <table class="edit_table">
-      <tr>
-        <td>姓名</td>
-        <td>{{model.student.name}}</td>
-        <td>学号</td>
-        <td>{{model.student.no}}</td>
-      </tr>
-      <tr>
-        <td>销假时间</td>
-        <td>
-          <input type="date" v-model="model.endDate">
-        </td>
-      </tr>
-    </table>
-    <button type="button" @click="updateButtonClick">销假</button>
-    <button type="button" @click="$router.go(-1);" class="default">返回</button>
+    <div class="edit_table_page">
+      <table class="edit_table">
+        <tr>
+          <td>姓名</td>
+          <td>{{model.student.name}}</td>
+          <td>学号</td>
+          <td>{{model.student.no}}</td>
+        </tr>
+        <tr>
+          <td>销假时间</td>
+          <td>
+            <input type="date" v-model="model.endDate">
+          </td>
+        </tr>
+      </table>
+      <div class="edit_button_group">
+        <button type="button" @click="updateButtonClick">销假</button>
+        <button type="button" @click="$router.go(-1);" class="default">返回</button>
+      </div>
+    </div>
   </div>
 </template>
   <script>

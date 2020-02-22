@@ -3,11 +3,9 @@
     <v-menu select="notice"></v-menu>
     <v-head></v-head>
     <div class="search_form">
-      <div class="head">
-        <div style="width:100%;height:50px;clear:both;">
-          <button @click="search" type="button" style="float:right">查询</button>
-          <button @click="blankButtonClick" type="button" class="default" style="float:right">新增</button>
-        </div>
+      <div style="width:100%;height:50px;clear:both;">
+        <button @click="search" type="button" style="float:right">查询</button>
+        <button @click="blankButtonClick" type="button" class="default" style="float:right">新增</button>
       </div>
     </div>
     <table class="data_table">

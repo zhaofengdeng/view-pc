@@ -2,33 +2,37 @@
   <div>
     <v-menu select="user"></v-menu>
     <v-head></v-head>
-    <table class="edit_table">
-      <tr>
-        <td>账号</td>
-        <td>
-          <input type="text" v-model="model.account">
-        </td>
-        <td>姓名</td>
-        <td>
-          <input type="text" v-model="model.name">
-        </td>
-      </tr>
-      <tr>
-        <td>邮箱</td>
-        <td>
-          <input type="text" v-model="model.email">
-        </td>
-        <td>状态</td>
-        <td>
-          <el-radio-group v-model="model.enable">
-            <el-radio :label="true">启用</el-radio>
-            <el-radio :label="false">停用</el-radio>
-          </el-radio-group>
-        </td>
-      </tr>
-    </table>
-    <button type="button" @click="updateButtonClick">更新</button>
-    <button type="button" @click="$router.go(-1);" class="default">返回</button>
+    <div class="edit_table_page">
+      <table class="edit_table">
+        <tr>
+          <td>账号</td>
+          <td>
+            <input type="text" v-model="model.account">
+          </td>
+          <td>姓名</td>
+          <td>
+            <input type="text" v-model="model.name">
+          </td>
+        </tr>
+        <tr>
+          <td>邮箱</td>
+          <td>
+            <input type="text" v-model="model.email">
+          </td>
+          <td>状态</td>
+          <td>
+            <el-radio-group v-model="model.enable">
+              <el-radio :label="true">启用</el-radio>
+              <el-radio :label="false">停用</el-radio>
+            </el-radio-group>
+          </td>
+        </tr>
+      </table>
+      <div class="edit_button_group">
+        <button type="button" @click="updateButtonClick">更新</button>
+        <button type="button" @click="$router.go(-1);" class="default">返回</button>
+      </div>
+    </div>
   </div>
 </template>
   <script>

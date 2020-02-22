@@ -2,6 +2,7 @@
   <div>
     <v-menu select="notice"></v-menu>
     <v-head></v-head>
+        <div class="edit_table_page">
     <table class="edit_table">
       <tr>
         <td>标题</td>
@@ -16,8 +17,14 @@
         </td>
       </tr>
     </table>
-    <button type="button" @click="updateButtonClick">更新</button>
+
+     <div class="edit_button_group">
+      <button type="button" @click="updateButtonClick">更新</button>
     <button type="button" @click="$router.go(-1);" class="default">返回</button>
+      </div>
+    </div>
+</div>
+    
   </div>
 </template>
   <script>

@@ -2,20 +2,24 @@
   <div>
     <v-menu select="room"></v-menu>
     <v-head></v-head>
-    <table class="edit_table">
-      <tr>
-        <td>寝室号</td>
-        <td>
-          <input type="text" v-model="model.no">
-        </td>
-        <td>可容纳人数</td>
-        <td>
-          <input type="number" v-model="model.sumQty">
-        </td>
-      </tr>
-    </table>
-    <button type="button" @click="updateButtonClick">更新</button>
-    <button type="button" @click="$router.go(-1);" class="default">返回</button>
+    <div class="edit_table_page">
+      <table class="edit_table">
+        <tr>
+          <td>寝室号</td>
+          <td>
+            <input type="text" v-model="model.no">
+          </td>
+          <td>可容纳人数</td>
+          <td>
+            <input type="number" v-model="model.sumQty">
+          </td>
+        </tr>
+      </table>
+      <div class="edit_button_group">
+        <button type="button" @click="updateButtonClick">更新</button>
+        <button type="button" @click="$router.go(-1);" class="default">返回</button>
+      </div>
+    </div>
   </div>
 </template>
   <script>
