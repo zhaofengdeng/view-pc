@@ -1,37 +1,54 @@
 const menus = [
   {
     index: "content",
-    name: "北5宿舍管理",
+    name: "三味书屋管理系统",
     menus: [
       {
         index: "user",
-        name: "用户管理",
+        name: "顾客管理",
         url: "/system/user/list"
       },
       {
-        index: "student",
-        name: "学生管理",
-        url: "/system/student/list"
+        index: "book",
+        name: "书籍管理",
+        url: "/system/book/list"
       },
       {
-        index: "vacation",
-        name: "请假管理",
-        url: "/system/vacation/list"
-      },
-      {
-        index: "notice",
-        name: "公告管理",
-        url: "/system/notice/list"
-      },
-      {
-        index: "room",
-        name: "寝室管理",
-        url: "/system/room/list"
+        index: "order",
+        name: "订单管理",
+        url: "/system/order/list"
       }
     ]
   }
 ];
-
+const menus2 = [
+  {
+    index: "content",
+    name: "三味书屋管理系统",
+    menus: [
+      {
+        index: "home",
+        name: "首页",
+        url: "/customer/home"
+      },
+      {
+        index: "book",
+        name: "书籍购买",
+        url: "/customer/book"
+      },
+      {
+        index: "buyCar",
+        name: "购物车",
+        url: "/customer/buy_car"
+      },
+      {
+        index: "order",
+        name: "我的订单",
+        url: "/customer/order"
+      }
+    ]
+  }
+];
 export default {
-  menus
+  menus, menus2
 };

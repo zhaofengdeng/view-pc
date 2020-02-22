@@ -17,9 +17,15 @@
       <button
         type="button"
         @click="loninButtonClick"
-        style="font-weight:bold;margin-top:50px;width:calc(90% + 30px) ;margin:50px 0px;"
+        style="font-weight:bold;width:calc(90% + 30px) ;margin:30px 0px;"
         class="btn btn-lg btn-block btn-primary"
       >登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+      <button
+        type="button"
+        @click="registButtonClick"
+        style="font-weight:bold;width:calc(90% + 30px) ;margin:0px;"
+        class="btn btn-lg btn-block default"
+      >注&nbsp;&nbsp;&nbsp;&nbsp;册</button>
     </div>
   </div>
 </template>
@@ -33,13 +39,13 @@ input {
   width: calc(100% + 220px);
   margin-left: -220px;
   height: 100%;
-  background-image: url(/static/project/images/bg.png);
+  background-image: url(/static/project/images/bg.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 #login_div {
   width: 360px;
-  height: 337px;
+  height: 388px;
   background-color: rgba(255, 255, 255, 0.5);
   float: right;
   margin-right: 120px;
@@ -65,9 +71,14 @@ export default {
           });
         } else {
           this.$router.push({
-            path: "/student/home"
+            path: "/customer/home"
           });
         }
+      });
+    },
+    registButtonClick() {
+      this.$router.push({
+        path: "/regist"
       });
     }
   }

@@ -52,7 +52,11 @@ export default {
     this.activeSoMenuIndex = this.SoMenuSelect;
   },
   created() {
-    this.menus = MenuJs.menus;
+    if (this.SessionUtil.get("session_user").type == "顾客") {
+      this.menus = MenuJs.menus2;
+    } else {
+      this.menus = MenuJs.menus;
+    }
   },
   task() {}
 };

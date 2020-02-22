@@ -6,25 +6,28 @@
       <table class="edit_table">
         <tr>
           <td>账号</td>
-          <td>
-            <input type="text" v-model="model.account">
-          </td>
+          <td>{{model.account}}</td>
           <td>姓名</td>
-          <td>
-            <input type="text" v-model="model.name">
-          </td>
+          <td>{{model.name}}</td>
         </tr>
         <tr>
-          <td>邮箱</td>
+          <td>手机号</td>
+          <td>{{model.phone}}</td>
+          <td>年龄</td>
+          <td>{{model.age}}</td>
+        </tr>
+        <tr>
+          <td>性别</td>
+          <td>{{model.sex}}</td>
+          <td>地址</td>
+          <td>{{model.address}}</td>
+        </tr>
+        <tr>
+          <td>余额</td>
+          <td>{{model.money}}</td>
+          <td>充值</td>
           <td>
-            <input type="text" v-model="model.email">
-          </td>
-          <td>状态</td>
-          <td>
-            <el-radio-group v-model="model.enable">
-              <el-radio :label="true">启用</el-radio>
-              <el-radio :label="false">停用</el-radio>
-            </el-radio-group>
+            <input type="number" v-model="money">
           </td>
         </tr>
       </table>
@@ -39,37 +42,17 @@
 export default {
   data() {
     return {
-      model: {
-        enable: true
-      },
-      checkModel: [
-        {
-          key: "name",
-          name: "姓名",
-          value: "required",
-          maxLength: 100
-        },
-        {
-          key: "account",
-          name: "账号",
-          value: "required",
-          maxLength: 100
-        },
-        {
-          key: "email",
-          name: "邮箱",
-          value: "required,email",
-          maxLength: 100
-        }
-      ]
+      model: {},
+      money: null
     };
   },
   methods: {
     updateButtonClick() {
-      var flag = this.check(this.model, this.checkModel);
-      if (!flag) {
+      if (this.StringUtil.isNull(this.money)) {
+        this.showErrorMsg("请输入充值金额");
         return;
       }
+      this.model.addMoney = this.money;
       this.post("/user/save_or_update", this.model).then(res => {
         this.$router.push({
           path: "/system/user/list"
