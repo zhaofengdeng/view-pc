@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="order"></v-menu>
+    <v-menu select="orderAnalysis"></v-menu>
     <v-head></v-head>
     <div class="search_form">
       <div class="head">

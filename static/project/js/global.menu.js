@@ -17,6 +17,11 @@ const menus = [
         index: "order",
         name: "订单管理",
         url: "/system/order/list"
+      },
+      {
+        index: "orderAnalysis",
+        name: "盘点核算",
+        url: "/system/order/analysis"
       }
     ]
   }
