@@ -5,7 +5,7 @@
         type="text"
         v-model="model.userAccount"
         style="margin-top:20px;width:90%;"
-        placeholder="请输入用户名"
+        placeholder="请输入账号"
       >
       <input
         type="password"
@@ -20,12 +20,6 @@
         style="font-weight:bold;width:calc(90% + 30px) ;margin:30px 0px;"
         class="btn btn-lg btn-block btn-primary"
       >登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
-      <button
-        type="button"
-        @click="registButtonClick"
-        style="font-weight:bold;width:calc(90% + 30px) ;margin:0px;"
-        class="btn btn-lg btn-block default"
-      >注&nbsp;&nbsp;&nbsp;&nbsp;册</button>
     </div>
   </div>
 </template>
@@ -69,6 +63,13 @@ export default {
           this.$router.push({
             path: "/system/user/list"
           });
+          return;
+        }
+        if (res.type == "餐厅管理员") {
+          this.$router.push({
+            path: "/shop/product/list"
+          });
+          return;
         } else {
           this.$router.push({
             path: "/customer/home"
