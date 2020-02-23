@@ -10,6 +10,7 @@
           <th>订单金额</th>
           <th>订单日期</th>
           <th>状态</th>
+          <th>查看</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -21,8 +22,11 @@
           <td>{{model.insertedAt}}</td>
           <td class="status">{{model.statusText}}</td>
           <td class="status">
+            <button @click="confirmButtonClick(model)">查看明细</button>
+          </td>
+          <td class="status">
             <button v-if="model.status==0" @click="paymentButtonClick(model)">付款</button>
-            <button v-if="model.status==2" @click="confirmButtonClick(model)">确认收货</button>
+            <button v-if="model.status==2" @click="confirmButtonClick(model)">确认取餐</button>
           </td>
         </tr>
       </tbody>
@@ -52,9 +56,9 @@ export default {
       });
     },
     confirmButtonClick(model) {
-      model.status = 3;
-      this.post("/order/update", model).then(res => {
-        this.search();
+      this.$router.push({
+        path: "/customer/order_detail",
+        query: { id: model.id }
       });
     }
   },

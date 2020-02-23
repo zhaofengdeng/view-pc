@@ -13,40 +13,40 @@
         <tr>
           <td>余额</td>
           <td>{{model.money}}</td>
-          <td>地址</td>
-          <td colspan="3">{{model.address}}</td>
+          <td>是否打包</td>
+          <td>
+            <el-radio-group v-model="flag">
+              <el-radio label="否">否</el-radio>
+              <el-radio label="是">是</el-radio>
+            </el-radio-group>
+          </td>
         </tr>
-        <tr></tr>
       </table>
       <table class="data_table">
         <thead>
           <tr>
             <th>序号</th>
             <th>名称</th>
-            <th>编码</th>
-            <th>作者</th>
-            <th>出版社</th>
-            <th>出版日期</th>
-            <th>售价</th>
+            <th>价格</th>
+            <th>楼层</th>
+            <th>窗口</th>
             <th>编辑</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(model,index) in list">
             <td class="no">{{index+1}}</td>
-            <td>{{model.book.name}}</td>
-            <td>{{model.book.code}}</td>
-            <td>{{model.book.author}}</td>
-            <td>{{model.book.chuBanCompany}}</td>
-            <td>{{model.book.chuBanDate}}</td>
-            <td>{{model.book.sellMoney}}</td>
+            <td>{{model.product.name}}</td>
+            <td>{{model.product.money}}</td>
+            <td>{{model.product.type1}}</td>
+            <td>{{model.product.type2}}</td>
             <td class="button">
               <button @click="deleteButtonClick(model)">删除</button>
             </td>
           </tr>
         </tbody>
         <tr v-if="list.length==0">
-          <td colspan="8" style="text-align:center;">暂无任何书籍</td>
+          <td colspan="8" style="text-align:center;">暂无任何餐品</td>
         </tr>
       </table>
       <div class="edit_button_group">
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       model: {},
+      flag: "否",
       list: []
     };
   },
@@ -73,10 +74,13 @@ export default {
     },
     updateButtonClick() {
       if (this.list.length == 0) {
-        this.alert("请购买书籍");
+        this.alert("请选择要点的餐");
         return;
       }
-      this.post("/order/payment", { id: this.list[0].order.id }).then(res => {
+      this.post("/order/payment", {
+        id: this.list[0].order.id,
+        flag: this.flag
+      }).then(res => {
         this.SessionUtil.set("session_user", res);
         this.alert("付款成功").then(res => {
           this.$router.push({

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="orderAnalysis"></v-menu>
+    <v-menu select="order"></v-menu>
     <v-head></v-head>
     <div class="search_form">
       <div class="head">
@@ -25,7 +25,6 @@
           <th>订单日期</th>
           <th>用户名称</th>
           <th>用户手机</th>
-          <th>用户地址</th>
           <th>状态</th>
           <th>操作</th>
         </tr>
@@ -38,10 +37,9 @@
           <td>{{model.insertedAt}}</td>
           <td>{{model.user.name}}</td>
           <td>{{model.user.phone}}</td>
-          <td>{{model.user.address}}</td>
           <td class="status">{{model.statusText}}</td>
           <td class="status">
-            <button v-if="model.status==1" @click="confirmButtonClick(model)">已发货</button>
+            <button @click="viewButtonClick(model)">查看详细</button>
           </td>
         </tr>
       </tbody>
@@ -58,8 +56,8 @@ export default {
       paginate: {},
       selects: [
         { name: "全部", value: null },
-        { name: "未发货", value: 1 },
-        { name: "未收货", value: 2 }
+        { name: "待制作", value: 1 },
+        { name: "未取餐", value: 2 }
       ]
     };
   },
@@ -71,10 +69,11 @@ export default {
         this.paginate = res.paginate;
       });
     },
-    confirmButtonClick(model) {
-      model.status = 2;
-      this.post("/order/update", model).then(res => {
-        this.search();
+
+    viewButtonClick(model) {
+      this.$router.push({
+        path: "/shop/order/detail",
+        query: { id: model.id }
       });
     }
   },

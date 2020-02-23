@@ -72,7 +72,7 @@ export default {
           return;
         } else {
           this.$router.push({
-            path: "/customer/home"
+            path: "/customer/product"
           });
         }
       });

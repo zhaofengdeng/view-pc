@@ -52,10 +52,13 @@ export default {
     this.activeSoMenuIndex = this.SoMenuSelect;
   },
   created() {
-    if (this.SessionUtil.get("session_user").type == "顾客") {
-      this.menus = MenuJs.menus2;
-    } else {
+    var user = this.SessionUtil.get("session_user");
+    if (user.type == "管理员") {
       this.menus = MenuJs.menus;
+    } else if (user.type == "餐厅管理员") {
+      this.menus = MenuJs.menus3;
+    } else {
+      this.menus = MenuJs.menus2;
     }
   },
   task() {}

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu select="book"></v-menu>
+    <v-menu select="product"></v-menu>
     <v-head></v-head>
     <div class="edit_table_page">
       <table class="edit_table">
@@ -9,59 +9,35 @@
           <td>
             <input type="text" v-model="model.name">
           </td>
-          <td>编码</td>
-          <td>
-            <input type="text" v-model="model.code">
-          </td>
-        </tr>
-        <tr>
-          <td>简介</td>
-          <td>
-            <input type="text" v-model="model.brief">
-          </td>
           <td>封面</td>
           <td>
             <input type="file" id="file" @change="fileChange" accept="image/*">
           </td>
         </tr>
         <tr>
-          <td>作者</td>
+          <td>楼层</td>
           <td>
-            <input type="text" v-model="model.author">
+            <input type="text" v-model="model.type1">
           </td>
-          <td>出版社</td>
+          <td>窗口</td>
           <td>
-            <input type="text" v-model="model.chuBanCompany">
-          </td>
-        </tr>
-        <tr>
-          <td>出版日期</td>
-          <td>
-            <input type="date" v-model="model.chuBanDate">
-          </td>
-          <td>供应商</td>
-          <td>
-            <input type="text" v-model="model.sellCompany">
+            <input type="text" v-model="model.type2">
           </td>
         </tr>
         <tr>
-          <td>供应商电话</td>
+          <td>数量</td>
           <td>
-            <input type="text" v-model="model.sellPhone">
+            <input type="number" v-model="model.allQty">
           </td>
-          <td>供应商地址</td>
+          <td>已卖数量</td>
           <td>
-            <input type="text" v-model="model.sellAddress">
+            <input type="number" v-model="model.sellQty">
           </td>
         </tr>
         <tr>
-          <td>进价</td>
+          <td>价格</td>
           <td>
-            <input type="number" v-model="model.buyMoney">
-          </td>
-          <td>售价</td>
-          <td>
-            <input type="number" v-model="model.sellMoney">
+            <input type="number" v-model="model.money">
           </td>
         </tr>
       </table>
@@ -81,25 +57,37 @@ export default {
       checkModel: [
         {
           key: "name",
-          name: "姓名",
+          name: "名称",
           value: "required",
           maxLength: 100
         },
         {
-          key: "code",
-          name: "编号",
+          key: "type1",
+          name: "楼层",
           value: "required",
           maxLength: 100
         },
         {
-          key: "buyMoney",
-          name: "进价",
+          key: "type2",
+          name: "窗口",
           value: "required",
           maxLength: 10
         },
         {
-          key: "sellMoney",
-          name: "售价",
+          key: "money",
+          name: "价格",
+          value: "required",
+          maxLength: 10
+        },
+        {
+          key: "allQty",
+          name: "数量",
+          value: "required",
+          maxLength: 10
+        },
+        {
+          key: "sellQty",
+          name: "已卖数量",
           value: "required",
           maxLength: 10
         }
@@ -112,9 +100,9 @@ export default {
       if (!flag) {
         return;
       }
-      this.post("/book/save_or_update", this.model).then(res => {
+      this.post("/product/save_or_update", this.model).then(res => {
         this.$router.push({
-          path: "/system/book/list"
+          path: "/shop/product/list"
         });
       });
     },
@@ -144,7 +132,7 @@ export default {
   mounted() {
     var id = this.$route.query.id;
     if (!this.StringUtil.isNull(id)) {
-      this.post("/book/search_by_id", { id: id }).then(res => {
+      this.post("/product/search_by_id", { id: id }).then(res => {
         this.model = res;
       });
     }

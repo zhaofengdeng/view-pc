@@ -14,17 +14,13 @@ const menus = [
 const menus2 = [
   {
     index: "content",
-    name: "三味书屋管理系统",
+    name: "高校食堂点餐系统",
     menus: [
+
       {
-        index: "home",
-        name: "首页",
-        url: "/customer/home"
-      },
-      {
-        index: "book",
-        name: "书籍购买",
-        url: "/customer/book"
+        index: "product",
+        name: "点餐",
+        url: "/customer/product"
       },
       {
         index: "buyCar",
@@ -42,27 +38,18 @@ const menus2 = [
 const menus3 = [
   {
     index: "content",
-    name: "三味书屋管理系统",
+    name: "高校食堂点餐系统",
     menus: [
       {
-        index: "user",
-        name: "顾客管理",
-        url: "/system/user/list"
+        index: "product",
+        name: "菜品管理",
+        url: "/shop/product/list"
       },
-      {
-        index: "book",
-        name: "书籍管理",
-        url: "/system/book/list"
-      },
+
       {
         index: "order",
         name: "订单管理",
-        url: "/system/order/list"
-      },
-      {
-        index: "orderAnalysis",
-        name: "盘点核算",
-        url: "/system/order/analysis"
+        url: "/shop/order/list"
       }
     ]
   }
